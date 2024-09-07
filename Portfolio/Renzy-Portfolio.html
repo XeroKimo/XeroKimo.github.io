@@ -4,7 +4,7 @@
         .flex-container {
           display: flex;
           flex-wrap: nowrap;
-          background-color: DodgerBlue;
+          /* background-color: DodgerBlue; */
         }
         
         .flex-container > div {
@@ -12,28 +12,56 @@
           width: auto;
           margin: 10px;
           text-align: center;
-          line-height: 75px;
+          align-items: center;
+          justify-content: center;
+          line-height: 50px;
           font-size: 30px;
         }
         .columnImage {
-            width: 33%;
+          align-items: center;
+          justify-content: center;
+          display: flex;
+          height: auto;
+          width: auto;
+          min-width: 33%;
+          margin: 5px;
         }
-        .columnText {
+        .columnText 
+        {
+            margin: 5px;
             width: auto;
         }
         h1
         {
             text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h2
+        {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        p
+        {
+            font-family: Arial, Helvetica, sans-serif;
         }
     </style>
     <body>
         <div class="flex-container">
-            <div class="columnImage"><img src="Portrait.jpg" width="400" height="600"></div>
+            <div class="columnImage"><img src="Portrait.jpg" width="100%"></div>
             <div class="columnText">
                 <h1>About Me</h1>
-                <p>Jean Lorenz Alarcon, preferred to be called Renzy. A professional game developer since 2020 excelling in various fields such as UI programming, gameplay systems, networking and tooling programming
-                    with experience with major game engines such as Unreal, Unity, and Godot. On my off time I like to play video games, or try programming things outside my expertice like application development, 
-                    graphics programming
+                <p>Jean Lorenz Alarcon, preferred to be called Renzy. Professional game developer since 2020. Excelling in various fields such as UI, gameplay systems, networking, and tooling programming
+                    with experience in major game engines such as Unreal, Unity, and Godot. On my off time I like to play video games, or try programming things outside my expertise like application development and
+                    graphics programming. I'm open to any game developer positions, but also open to broaden my horizons to positions like web dev, embedded, or as an application dev.
+                </p>
+
+                <h2>Tech Stack</h2>
+                <p>
+                    Engines: Unreal, Unity, Godot, <br>
+                    Languages: C++, C#, Java, Unreal Blueprint <br>
+                    APIs: DX11, OpenGL, Firebase, PUN2, Unreal Networking Solution, SDL2, Dear ImGUI, Box2D, Win32 <br>
+                    Source Control: Github, SVN, Perforce <br>
                 </p>
             </div>
         </div>
@@ -42,34 +70,56 @@
         
         <div class="flex-container">
             <div class="columnText">
-            <h1>Mechroneer</h1>
-            <p>Mechroneer was the first game I developed. It was my student capstone project. Mechroneer is a MOBA more similar to Battlerite than it is to bigger titles such as League of Legends, 
-                unlike it's name however, it has nothing to do with mechs, but with robots. The game was made with Unity and I oversaw various aspects of the game such as the ability system, the UI
-                stack, networking, and the overall architecture of the game. Download now at <a href="https://acsl.itch.io/mechroneer">Itch.io</a>
-            </p></div>
-            <div class="columnImage"><img src="Mechroneer.gif" width="640" height="360"></div>
+                <h1>Mechroneer</h1>
+                <p>
+                    Mechroneer was the first game I developed. It was my student capstone project. Mechroneer is a MOBA similar to Battlerite, 
+                    but with customizable robots. Build your own robot by mixing and matching various parts.
+                    Those parts will determine the stats and abilities available to your robot. Toss your robot into the arena to fight against other players or AI.
+                </p>
+                <p>
+                    The game was made with Unity and I oversaw various aspects of the game such as the ability system, the UI
+                    stack, networking, and the overall architecture of the game. 
+                </p>
+                <p>
+                    Download now at <a href="https://acsl.itch.io/mechroneer">Itch.io</a>
+                </p>
+            </div>
+            <div class="columnImage"><img src="Mechroneer.gif" width="100%"></div>
         </div>
         
         <div class="flex-container">
-            <div class="columnImage"><img src="WordMeetsTee.gif" width="640" height="360"></div>
+            <div class="columnImage"><img src="WordMeetsTee.gif" width="100%"></div>
             <div class="columnText">
-        <h2>WordMeetsTee</h2>
-        <p>WordMeetsTee is a mobile game where scrabble meets golfing. Each turn you pick a club and gain letters to build as many words as possible to try and reach the hole. 
-            Play solo or against other players either in real time or freely quit and come back later when your opponent has finally made a move. <br></br>
-            WordMeetsTee was made in Unity and I was in charge of networking, microtransactions, cloud saving, UI, and various gameplay systems. 
-        </p>
-        
-        <p>Play now on <a href="https://play.google.com/store/apps/details?id=com.akatuapa.wordmeetstee">Android</a> or <a href=https://apps.apple.com/ca/app/wordmeetstee/id1576885901>iOS</a></p>
-        </div></div>
+                <h2>WordMeetsTee</h2>
+                <p>
+                    WordMeetsTee is a mobile game where scrabble meets golfing. Each turn you pick a club and gain letters to build as many words as possible to try and reach the hole. 
+                    Play solo or against other players either in real time or freely quit and come back later when your opponent has finally made a move.
+                </p>
+                <p>
+                    WordMeetsTee was made in Unity and I was in charge of networking, microtransactions, cloud saving, UI, and various gameplay systems. 
+                </p>
+                <p>
+                    Play now on <a href="https://play.google.com/store/apps/details?id=com.akatuapa.wordmeetstee">Android</a> or <a href=https://apps.apple.com/ca/app/wordmeetstee/id1576885901>iOS</a>
+                </p>
+            </div>
+        </div>
         
         <div class="flex-container">
             <div class="columnText">
-            <h2>Chess Soccer</h2>
-            <p>Chess Soccer was developped for a game jam back in 2020. The name of the game is quite literal; using chess pieces to play soccer. This game was developped in a pair. I did all the programming
-                while my partner did the art and sound effects. Download now at <a href="https://xerokimo.itch.io/chess-soccer">Itch.io</a>
-            </p></div>
-        <div class="columnImage"><img src="ChessSoccer.gif" width="640" height="360"></div>
-        
-    </div>
+                <h2>Chess Soccer</h2>
+                <p>
+                    Chess Soccer was developped for a game jam back in 2020. The name of the game is quite literal; using chess pieces to play soccer. 
+                    Capture pieces to give them a temporary time out. Grab the ball, pass it around, and try to score into the goal! First to 3 points wins!.
+                </p>
+                <p>
+                    This game was developped in a pair. I did all the programming
+                    while my partner did the art and sound effects
+                </p>
+                <p>
+                    Download now at <a href="https://xerokimo.itch.io/chess-soccer">Itch.io</a>
+                </p>
+            </div>
+            <div class="columnImage"><img src="ChessSoccer.gif" width="100%"></div>
+        </div>
     </body>
 </html>
