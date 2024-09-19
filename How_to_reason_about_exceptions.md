@@ -1,5 +1,3 @@
-# How to reason about exceptions
-
 ## Preface
 
 I am not here to tell you whether exceptions are better or not. This could honestly be called how to reason about error handling as most of the content can be applied to any error handling scheme you use, but I'd like to focus on exceptions as they are my favorite ways to handle errors and hopefully shed some light on how to be able to reason in a code base which uses exceptions. There are a lot of resources about how to use exceptions, but not a lot on how to reason about them beyond the basics of what occurs when you throw them. This post does assume you have basic understanding of how exceptions work.
