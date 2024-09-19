@@ -14,9 +14,9 @@ There are 4 semantics attached to error handling
 3. Handling
 4. Clean Up
 
-Detection is to find some erroneous behaviour and report it. Let's say it reports an error object.
+Detection is to detect some erroneous behaviour and report it. Let's say it reports an error object. Propagation begins the moment we leave the current stack frame with the error object. If we handle the error within the same stack frame the error was detected in, propagation is skipped.
 
-Propagation is to pass along this error object to a place it can be handled.
+Propagation is to pass along this error object up the call stack to a place it can be handled. How it arrives there, it doesn't matter. Implicit, explicit, the behaviour is all the same
 
 Handling is to perform some action based on the error object and end its lifetime. So long as an error object exists, the error is not handled. That means converting it from one error to another or rethrowing is also not handling.
 
@@ -55,7 +55,7 @@ So what if we aren't in the majority? Luckily, so long as we don't care about th
 ## Simplifying Functions
 My previous point made an assumption "*when* our function fails". This has been a personal guideline of mine when writing exceptions which simply states, "either your entire function is surrounded by a try / catch block, or it doesn't have one at all". Doing so might force you to simplify your function by properly splitting things apart as trying to reason about big functions is hard enough. Reasoning about a big function that can fail is even harder.
 
-Going forward, I will be assuming our functions are written like so.
+We'll assume all functions are written to either have no try/catch block, or the entire function is encompassed in one.
 
 ## Reasoning About Control Flow. A Different Mind Set
 Let's say we have a function we have to implement. We've figured out what we need to implement it so we start writing it out. This is how it might go without exceptions.
@@ -79,7 +79,12 @@ Reading is of course done the same way
 2. Ensure the clean up code is written corretly
 3. Read the error paths if the function actually handles any errors
 
-How can we write clean up code if we don't know the exact functions that can error?
+But how do we write clean up code if we don't know which operations can error? That's just the wrong perspective, regardless of your error handling scheme. Instead of focusing on which operations can error out, focus on what the state of your program should be regardless of how your function exits. For example:
+
+- If we allocated heap memory, make sure it's guaranteed to be de-allocated.
+- If we changed some member variable, but the change only makes sense if the function completes, write clean up code that could revert the state if we exited the function through a failure.
+
+That is what you should be focusing on. Which brings us to...
 
 ## The different ways we clean up
 
@@ -107,7 +112,7 @@ void Func()
     });
 }
 ```
-In this example, `Write()` could maybe perform a rollback if the passed in function fails so we could modify the value without any worries of it becoming some invalid value. This is the least error prone way to do clean up assuming you're using a compatible error handling scheme with the function you're calling with. For example, if `Write()` expects to use value-based errors, throwing an exception will completely break this safety.
+In this example, `Write()` could maybe perform a rollback if the passed in function fails so we could modify the value without any worries of it becoming some invalid state. This is the least error prone way to do clean up assuming you're using a compatible error handling scheme with the function you're calling with. For example, if `Write()` expects to use value-based errors, throwing an exception will completely break this safety. This is also the only technique that's not error handling shceme agnostic
 
 ### Commit on success
 ```c++
@@ -130,9 +135,9 @@ void Func()
     //Do operations
 }
 ```
-Defer is an operation that runs when we exit the function, regardless of how we exit it. Some times however, you might not want that. Some times you only want the defer to execute on failure. In C++, these are commonly called as scope guards. Defer is just one kind of scope guard. There's also a scope guard that can run only when on failure, and one only on success. Defers can basically be seen as function specific destructors. It makes it less error prone for clean up with the downside of every function which operates on something that needs the pair function be called for clean up be written in every function instead of doing it once by creating a class with a destructor. <br>This is the only technique that would require the user to have knowledge of the paired operation, while all the other techniques are just completely hidden away from you making this technique less safe as you could forget about it, but at least you could only forget it once compared to forgetting at every potential function exit point
+Defer is an operation that runs when we exit the function, regardless of how we exit it. Some times however, you might not want that. Some times you only want the defer to execute on failure. In C++, these are commonly called scope guards. Defer is just one kind of scope guard. There's also a scope guard that can run only when on failure, and one only on success. Defers can basically be seen as function specific destructors. It makes it less error prone for clean up with the downside that every function which operates on something that needs a paired function be called for clean up must be written in every function instead of doing it once by creating a class with a destructor. <br>This is the only technique that would require the user to have knowledge of the paired operation, while all the other techniques are just completely hidden away from you making this technique less safe as you could forget about it, but at least you could only forget it once per function compared to forgetting at every potential exit point per function
 
-These are just some of the ways we could write clean up code, mostly without the user requiring knowledge of how to properly clean up.  Most of these techniques assume the abstraction has already been written. If you need to make those abstractions yourself and the clean up code has bugs, at least the bug is centralized.
+These are just some of the ways we could write clean up code, mostly without the user requiring knowledge of how to properly clean up. Most of these techniques assume the abstraction has already been written. If you need to make those abstractions yourself and the clean up code has bugs, at least the bug is centralized.
 
 ## Conclusion
 So how do we reason about exceptions? It just really boils down into writing code with the intent of what we want it to do, and not the exact how, which is basically every abstraction ever. It is done by simplifying our functions. By caring only about whether our function fails or not rather than concerning if any individual operations can fail. By making sure the clean up code works regardless of how we exit the function. And lastly, just approaching the code with a different mind set where what the function achieves is more of the focus then the ways of exiting the function.
