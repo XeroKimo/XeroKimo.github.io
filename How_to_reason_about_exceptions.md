@@ -53,7 +53,7 @@ If your function can't even fail ever, it's one of those things that are better 
 So what if we aren't in the majority? Luckily, so long as we don't care about the exact error, unchecked exceptions work just fine through some techniques shown in the examples, but the moment we care about the exact error is when you can only hope things are documented properly. Potentially, we could have a tool which auto-generate a list of exceptions that the function throws, either for documentation, or for other tools to consume and display this information in some way, that way, one doesn't need to manually update the list in a human error prone way, but if we really care about handling exact errors, it's best we just play to the strength of other error handling schemes. 
 
 ## Simplifying Functions
-My previous point has made an assumption "*when* our function fails". This has been a personal guideline of mine when writing exceptions which simply states, "either your entire function is surrounded by a try / catch block, or it doesn't have one at all". It simplifies reasoning about your functions a lot. Doing so might force you to simplify your function by properly splitting things apart as trying to reason about big functions is hard enough. Reasoning about a big function that can fail is even harder. 
+My previous point has made an assumption "*when* our function fails". This has been a personal guideline of mine when writing exceptions which simply states, "either your entire function is surrounded by a try / catch block, or it doesn't have one at all". Doing so might force you to simplify your function by properly splitting things apart as trying to reason about big functions is hard enough. Reasoning about a big function that can fail is even harder. 
 
 Going forward, I will be assuming our functions are written like so.
 
@@ -68,7 +68,7 @@ Then when someone else comes along to read or review this function, they'll basi
 2. Notice this call errors, reads the correctness of the propagation or handling code
 3. Repeat until we've read everything
 
-People like that as we can see all the places a function can exit, however the amount of exit points hardly matters. What matters is that did we exit the function because it succeeded, or because it failed? And if we exited the function because we failed, all that matters is we cleaned up properly and propagate the error object, and again, the exact error most of the time hardly matters, and the mind set of writing with exceptions reflects this.
+People like that as we can see all the places a function can exit, however the amount of exit points hardly matters. What matters is that did we exit the function because it succeeded, or because it failed? And if we exited the function because we failed, what matters is we cleaned up properly and propagate the error object. The mind set of writing with exceptions reflects this.
 1. Write the function as if it doesn't error, aka the happy path
 2. Write clean up code
 3. Decide if we want to handle any errors, if yes, put a try/catch on the entire function
@@ -135,4 +135,4 @@ Defer is an operation that runs when we exit the function, regardless of how we 
 These are just some of the ways we could write clean up code, mostly without the user requiring knowledge of how to properly clean up.  Most of these techniques assume the abstraction has already been written. If you need to make those abstractions yourself and the clean up code has bugs, at least the bug is centralized.
 
 ## Conclusion
-So how do we reason about exceptions? It just really boils down into writing code with what we want it to do, and not the exact how, which is basically every abstraction ever. It is done by simplifying our functions. By caring only about whether our function fails or not rather than concerning if any individual operations can fail. By making sure the clean up code works regardless of how we exit the function. And lastly, just approaching the code with a different mind set where what the function achieves is more of the focus then the ways of exiting the function.
+So how do we reason about exceptions? It just really boils down into writing code with the intent of what we want it to do, and not the exact how, which is basically every abstraction ever. It is done by simplifying our functions. By caring only about whether our function fails or not rather than concerning if any individual operations can fail. By making sure the clean up code works regardless of how we exit the function. And lastly, just approaching the code with a different mind set where what the function achieves is more of the focus then the ways of exiting the function.
