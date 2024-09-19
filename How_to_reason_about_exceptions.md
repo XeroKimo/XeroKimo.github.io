@@ -55,7 +55,7 @@ So what if we aren't in the majority? Luckily, so long as we don't care about th
 ## Simplifying Functions
 My previous point made an assumption "*when* our function fails". This has been a personal guideline of mine when writing exceptions which simply states, "either your entire function is surrounded by a try / catch block, or it doesn't have one at all". Doing so might force you to simplify your function by properly splitting things apart as trying to reason about big functions is hard enough. Reasoning about a big function that can fail is even harder.
 
-Going forward, assume our hypothetical codebase always follows the guideline, as that is what this post assumes.
+Going forward, assume our hypothetical codebase always follows the guideline as that is what this post assumes.
 
 ## Reasoning About Control Flow. A Different Mind Set
 Let's say we have a function we have to implement. We've figured out what we need to implement, so we start writing it out. This is how it might go without exceptions.
