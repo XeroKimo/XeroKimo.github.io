@@ -2,7 +2,7 @@
 
 ## Preface
 
-I am not here to tell you whether exceptions are better or not. This could honestly be called how to reason about error handling as most of the content can be applied to any error handling scheme you use, but I'd like to focus on exceptions as they are my favorite ways to handle errors and hopefully shed some light on how to be able to reason codebases which uses exceptions. There are a lot of resources about how to use exceptions, but not a lot on how to reason about them beyond the basics of what occurs when you throw them. This post does assume you have basic understanding of how exceptions work.
+I am not here to tell you whether exceptions are better or not. This could honestly be called how to reason about error handling as most of the content can be applied to any error handling scheme you use, but I'd like to focus on exceptions as they are my favorite ways to handle errors and hopefully shed some light on how to be able to reason about codebases which uses exceptions. There are a lot of resources about how to use exceptions, but not a lot on how to reason about them beyond the basics of what occurs when you throw them. This post does assume you have basic understanding of how exceptions work.
 
 Let's assume that we're in a codebase that only uses exceptions for error handling, even more horrifying, let's assume we only have access to unchecked exceptions. How can we possibly tell what can error? How do we reason about the function's control flow? Actually, can we reason about anything in the codebase? We can, but first, let's have a quick rundown of the semantics of error handling.
 
@@ -112,7 +112,7 @@ void Func()
     });
 }
 ```
-In this example, `Write()` could maybe perform a rollback if the passed in function fails so we could modify the value without any worries of it becoming some invalid state. This is the least error prone way to do clean up assuming you're using a compatible error handling scheme with the higher order function expects you to use. For example, if `Write()` expects to use value-based errors, throwing an exception will completely break this safety. This is also the only technique that's not error handling shceme agnostic
+In this example, `Write()` could maybe perform a rollback if the passed in function fails so we could modify the value without any worries of it becoming some invalid state. This is the least error prone way to do clean up assuming you're using a compatible error handling scheme with the higher order function expects you to use. For example, if `Write()` expects to use value-based errors, throwing an exception will completely break this safety. This is the only technique that's not error handling shceme agnostic
 
 ### Commit on success
 ```c++
