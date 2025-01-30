@@ -141,5 +141,54 @@
             </div>
             <div class="columnImage"><img src="ChessSoccer.gif" width="100%"></div>
         </div>
+
+        <h1>Monthly Projects</h1>
+            <h2>2025</h2>
+                <h3>January - On Hiatus</h3>
+            <h2>2024</h2>
+                <h3>December - Physics Engines</h3>
+                    <p>
+                        This month, I tackled the topic of Physics and Physics Engines. Always wanted to know how it worked. I could just look at some
+                        open source engines and look at there code, but what's the fun in that, so of course I'm going to code my own?... 
+                        Well I didn't end up getting any coding done since unlike rendering,  I'm pretty rusty in physics, and had no clear goals or 
+                        much a clue for what goes into a physics engine, so I didn't know where to start.
+                    </p>
+                    <p>
+                        I ended picking up the book "Game Physics" by Ian Millington which goes over exactly what I was lacking 
+                        and a nice refresher on various physics and some math topics. I already knew some high level basics, since it's something you run into 
+                        when using physics engines in the first place, like collision detection, and forces. But the actual details on how these are implemented 
+                        and all interact with each other... I just don't know where to start.
+                    </p>
+                    <p>
+                        One thing I did attempt to do for fun was trying to make strong types for units and try to use that for the engine. 
+                        In C++ there are a few units libraries out there already, a prominent upcoming one is the mp-units library, 
+                        however it didn't support operations for multiplying and dividing different units to go from say "m" -> "m/s",
+                        though later on, I discovered it actually does, but I guess I was doing something it didn't like as the equations
+                        I wrote was giving me compiler errors.<br><br> 
+                        In order to properly calculate the correct unit type for a given equation I turned to metaprogramming, and boy is it a daunting task. 
+                        It requires a lot of variadic template manipulation that I couldn't figure out so I just did the next best thing, copy 
+                        pasting the exact resulting units when multiplying / dividing, but there were a lot of cases to consider.
+                    </p>
+                    <p>
+                        Speaking of units, did you know a Newton (N) is defined as kg*m/s/s? 
+                        I mean makes sense considering F=ma.... I guess I wasn't paying attention to high school physics as I 
+                        never made that connection back then. On New Years, Youtube recommended me the video "Cursed Units", and after watching 
+                        that made me realize, implementing operations to the units library is even harder than I thought.... and I already knew it was going to be though.
+                    </p>
+                <h3>November - Intermediate Rendering</h3>
+                    <p>
+                        During my studies, we learnt some basic rendering with OpenGL. Going up to drawing some primitives, texturing, and some basic effects. 
+                        I wanted to learn more, so the first topic of my monthly learning was to go beyond the basics. I booted up Learn OpenGL in order to read up on
+                        those topics and implement them myself, but with a twist, I'm going to implement them in DX11 as I ended up liking it's API more than OpenGL when I was learning on my own.
+
+                        <br><br>I got as far as to doing basic shadow maps, and surprisingly, the technique is so simple and pretty genius. This is also when I started to understand making render passes.
+                    </p>
+                    <video width="320" height="240" muted controls><source src="2024-11-24 17-22-57.mp4" type="video/mp4"></video>
+                    <p>
+                        Even though I've only gotten to basic shadow mapping, this gave me new found awe on modern renderers as not only is the code to support
+                        basic shadow mapping is starting to get decently complicated, my code isn't even structured at all yet. Just imagining what a renderer
+                        in a AAA engine needs in order to support all their techniques while also being strucutured, I can only begin to imagine how crazy complicated
+                        these renderers are.
+                    </p>
     </body>
 </html>
