@@ -1,5 +1,9 @@
 # How to reason about exceptions
 
+Publish Date: 2024 Sept 2<br>
+Last Updated: 2025 March 3
+[Home](../Blogs.html)
+
 ## Preface
 
 I am not here to tell you whether exceptions are better or not. This could honestly be called how to reason about error handling as most of the content can be applied to any error handling scheme you use, but I'd like to focus on exceptions as they are my favorite ways to handle errors and hopefully shed some light on how to be able to reason about codebases which uses exceptions. There are a lot of resources about how to use exceptions, but not a lot on how to reason about them beyond the basics of what occurs when you throw them. This post does assume you have basic understanding of how exceptions work.
@@ -141,3 +145,5 @@ These are just some of the ways we could write clean up code, mostly without the
 
 ## Conclusion
 So how do we reason about exceptions? It just really boils down into writing code with the intent of what we want it to do, and not the exact how, which is basically every abstraction ever. It is done by simplifying our functions. By caring only about when our function fails and not if any individual operations in our function can fail. By making sure the clean up code works regardless of how we exit the function. And lastly, just approaching the code with a different mind set where what the function achieves is more of the focus then the ways of exiting the function.
+
+[Home](../Blogs.html)
