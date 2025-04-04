@@ -30,11 +30,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Change Directory
+        run: cd ./my-vue-app/
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          source: ./my-vue-app/
-          cache-dependency-path: my-vue-app/package-lock.json
           node-version: 20
           cache: 'npm'
       - name: Install dependencies
