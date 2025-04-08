@@ -1,6 +1,6 @@
-import React from "react";
+import { JSX } from "react"
 
-function SiteHeader()
+function SiteHeader() : JSX.Element
 {
     return (
         <>
