@@ -12,7 +12,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        nested: resolve(__dirname, 'Blogs/How_to_reason_about_exceptions.md'),
+        nested: resolve(__dirname, 'How_to_reason_about_exceptions.html'),
       },
     },
   },
