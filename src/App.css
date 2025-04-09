@@ -18,6 +18,38 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  /* background-color: DodgerBlue; */
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: auto;
+  margin: 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  line-height: 50px;
+  font-size: 30px;
+}
+.columnImage {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: auto;
+  width: auto;
+  min-width: 33%;
+  margin: 5px;
+}
+.columnText 
+{
+    margin: 5px;
+    width: auto;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
