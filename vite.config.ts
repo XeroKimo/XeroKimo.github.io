@@ -12,7 +12,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         //Allows me to deploy multi page apps https://vite.dev/guide/build.html#multi-page-app
+        main: resolve(__dirname, 'index.html'),
         blogs: resolve(__dirname, 'Blogs.html'),
+        exception_reasoning: resolve(__dirname, 'Blogs/How_to_reason_about_exceptions.html'),
       },
     },
   },
