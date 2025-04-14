@@ -11,9 +11,15 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        nested: resolve(__dirname, 'How_to_reason_about_exceptions.html'),
+        //Allows me to deploy multi page apps https://vite.dev/guide/build.html#multi-page-app
+        blogs: resolve(__dirname, 'Blogs.html'),
       },
     },
   },
+
+  //Using aliases, allows me to define a new base path for the deployed site to search for without having to do a bunch of `../../` to get my relative path
+  //Helped solved by using https://stackoverflow.com/questions/75798479/how-can-i-solve-the-issue-of-failed-to-resolve-import-in-vitest
+  resolve: {
+    alias: [{ find: "@common", replacement: resolve(__dirname, "./Common") }]
+  }
 })

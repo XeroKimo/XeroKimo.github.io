@@ -20,7 +20,15 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    
+
+    //Defines a path we can start relative to by starting paths with the key and resolves to the value
+    //https://www.typescriptlang.org/tsconfig/#paths
+    "paths": {
+      "@common/*":["./Common/*"]
+    },
+    
   },
-  "include": ["src"]
+  "include": ["src", "Blogs", "Blogs/ReasonAboutExceptions"]
 }
