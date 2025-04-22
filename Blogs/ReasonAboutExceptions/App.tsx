@@ -9,17 +9,16 @@ function App() : JSX.Element {
   return (
     <>
     <ReactMarkdown remarkPlugins={[remarkGfm]} components={{
-      code({node, className, children, ...props}) {
+      code({ className, children}) {
         const match = /language-(\w+)/.exec(className || '')
         return match ? (
           <SyntaxHighlighter
             children={String(children).replace(/\n$/, '')}
             language={match[1]}
             PreTag="div"
-            {...props}
           />
         ) : (
-          <code className={className} {...props}>
+          <code className={className} >
             {children}
           </code>
         )
@@ -66,7 +65,7 @@ People who like exceptions tell you to just accept that every function can throw
 When we decide to handle errors, they are handled in 1 of 4 ways; split between whether we care about what the exact errors are or not, and whether we care about the which exact operations caused the error or not. 
 
 | Error V/ Operation -> | Exact | Not Exact |
-| :--- | :---: | :---: |
+| --- | :---: | :---: |
 | Exact | [Examples](https://godbolt.org/z/TdP5dPf56)  | [Examples](https://godbolt.org/z/9x3vc6G3M) |
 | Not Exact | [Examples](https://godbolt.org/z/zoY1xofT1)  | [Examples](https://godbolt.org/z/8qsbsneY7) |
 
