@@ -1,13 +1,14 @@
 import { JSX } from "react"
+import './SiteHeader.css'
 
 
 function SiteHeader() : JSX.Element
 {
     return (
         <>
-        <body>
-            <p><a href="../">Portfolio</a>  <a href="Blogs.html">Blogs</a></p>
-        </body>
+            <div className="site-header">
+                <p><a href="../">Portfolio</a>  <a href="../Blogs.html">Blogs</a></p>
+            </div>
         </>
     )
 }
