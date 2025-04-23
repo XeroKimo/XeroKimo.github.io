@@ -1,0 +1,13 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  justify-content: start;
+}
+
+.left_aligned_div
+{
+  overflow-wrap: break-word;
+  text-align: left;
+}

@@ -1,9 +1,14 @@
-# How to reason about exceptions
+import './App.css'
+import {  JSX  } from 'react'
+import BlogEntry from '@common/Page_Templates/BlogEntry'
 
-Publish Date: 2024 Sept 2<br>
-Last Updated: 2025 March 3
-[Home](../Blogs.html)
+function App() : JSX.Element {
 
+  return (
+    <>
+    <BlogEntry title='How To Reason About Exceptions' publishedDate='2024 Sept 2' modifiedDate='2025 Mar 3'>
+{
+`
 ## Preface
 
 I am not here to tell you whether exceptions are better or not. This could honestly be called how to reason about error handling as most of the content can be applied to any error handling scheme you use, but I'd like to focus on exceptions as they are my favorite ways to handle errors and hopefully shed some light on how to be able to reason about codebases which uses exceptions. There are a lot of resources about how to use exceptions, but not a lot on how to reason about them beyond the basics of what occurs when you throw them. This post does assume you have basic understanding of how exceptions work.
@@ -26,7 +31,7 @@ Handling is to perform some action based on the error object and end its lifetim
 
 Clean up is to make sure that nothing in the call stack leaves any part of your program in a errorneous state while the error object is propagating. Clean up is not necessairly part of error handling as it is something you should be doing regardless of whether an error can occur or not.
 
-It is important to note that Propagation is not Handling the error. I've seen some comments saying something along the lines of "Yea I've handled the error look" `if (error) return error;`, but that's propagating as the error still exists, but maybe that misunderstanding is just a vocal minority. 
+It is important to note that Propagation is not Handling the error. I've seen some comments saying something along the lines of "Yea I've handled the error look" \`if (error) return error;\`, but that's propagating as the error still exists, but maybe that misunderstanding is just a vocal minority. 
 
 With that out of the way, how do we read and write code with exceptions and still be able to reason about it?
 
@@ -36,10 +41,10 @@ People who like exceptions tell you to just accept that every function can throw
 ## The different ways we handle errors
 When we decide to handle errors, they are handled in 1 of 4 ways; split between whether we care about what the exact errors are or not, and whether we care about the which exact operations caused the error or not. 
 
-|Error V/ Operation ->|Exact|Not Exact|
-|---|---|---|
-|Exact| [Examples](https://godbolt.org/z/TdP5dPf56)  | [Examples](https://godbolt.org/z/9x3vc6G3M) |
-|Not Exact| [Examples](https://godbolt.org/z/zoY1xofT1)  | [Examples](https://godbolt.org/z/8qsbsneY7) |
+| Error V/ Operation -> | Exact | Not Exact |
+| --- | :---: | :---: |
+| Exact | [Examples](https://godbolt.org/z/TdP5dPf56)  | [Examples](https://godbolt.org/z/9x3vc6G3M) |
+| Not Exact | [Examples](https://godbolt.org/z/zoY1xofT1)  | [Examples](https://godbolt.org/z/8qsbsneY7) |
 
 These examples is non exhaustive and are only there to get an idea of how some functions which handle errors are written.
 
@@ -97,17 +102,17 @@ Knowing what clean up code to write has the same pains regardless of the error h
 The only thing that makes exceptions a bit harder is not being able to rely on all the same explicit clean up techniques value-based error handling uses. Here are some techniques that can be deployed which makes it much simpler for the user to write clean up code correctly and are also error handling scheme agnostic.
 
 ### If you're calling a function, ideally it returns some type that knows how to clean up after itself
-```c++
+\`\`\`c++
 void Func()
 {
     std::unqiue_ptr<Foo> foo = SomeAllocatingFunction();
     //Do operations
 }
-```
-Here `foo` cannot be forgotten to be deleted as `std::unique_ptr` will call delete in its destrutor. This is one of the least error prone techniques because the only thing the user has to do is to store the variable within the scope, which in most cases, is something a user will actually already do as they will probably be using it soon. No need for the user to remember to call some paired operation to properly clean up as it's already written in a class's destructor.
+\`\`\`
+Here \`foo\` cannot be forgotten to be deleted as \`std::unique_ptr\` will call delete in its destrutor. This is one of the least error prone techniques because the only thing the user has to do is to store the variable within the scope, which in most cases, is something a user will actually already do as they will probably be using it soon. No need for the user to remember to call some paired operation to properly clean up as it's already written in a class's destructor.
 
 ### If your language supports composing functions, you could pass in a function to operate on some value, and the higher order function will be responsible for cleaning up
-```c++
+\`\`\`c++
 void Func()
 {
     database.Write("Key", [](auto& value)
@@ -115,30 +120,30 @@ void Func()
         //modify value and do some operations
     });
 }
-```
-In this example, `Write()` could maybe perform a rollback if the passed in function fails so we could modify the value without any worries of it becoming some invalid state. This is the least error prone way to do clean up assuming you're using a compatible error handling scheme with the higher order function expects you to use. For example, if `Write()` expects to use value-based errors, throwing an exception will completely break this safety. This is the only technique that's not error handling shceme agnostic
+\`\`\`
+In this example, \`Write()\` could maybe perform a rollback if the passed in function fails so we could modify the value without any worries of it becoming some invalid state. This is the least error prone way to do clean up assuming you're using a compatible error handling scheme with the higher order function expects you to use. For example, if \`Write()\` expects to use value-based errors, throwing an exception will completely break this safety. This is the only technique that's not error handling shceme agnostic
 
 ### Commit on success
-```c++
+\`\`\`c++
 void Foo::Func()
 {
     auto temp = SomeValue();
     //Do operations
     member_variable = temp;
 }
-```
+\`\`\`
 
 This technique is the simplest of them all, no need for fancy language features. If you make changes using a temporary variable, it doesn't matter how you change it, no visible state gets changed until you assign it back to the more permanent storage
 
 ### If your language doesn't support something like destructors, but supports defer, write a defer statement after the operation you need cleaning up.
-```c++
+\`\`\`c++
 void Func()
 {
     Foo* foo = SomeAllocatingFunction();
     defer([foo]{ Free(foo); });
     //Do operations
 }
-```
+\`\`\`
 Defer is an operation that runs when we exit the function, regardless of how we exit it. Some times however, you might not want that. Some times you only want the defer to execute on failure. In C++, these are commonly called scope guards. Defer is just one kind of scope guard. There's also a scope guard that can run only on failure, and one only on success. Defers can basically be seen as function specific destructors. It makes it less error prone for clean up with the downside that every function which operates on something that needs a paired function be called for clean up must be written in every function instead of doing it once by creating a class with a destructor. <br>This is the only technique that would require the user to have knowledge of the paired operation, while all the other techniques are just completely hidden away from you making this technique less safe as you could forget about it, but at least you could only forget it once per function compared to forgetting at every potential exit point per function
 
 These are just some of the ways we could write clean up code, mostly without the user requiring knowledge of how to properly clean up. Most of these techniques assume the abstraction has already been written. If you need to make those abstractions yourself and the clean up code has bugs, at least the bug is centralized.
@@ -146,4 +151,11 @@ These are just some of the ways we could write clean up code, mostly without the
 ## Conclusion
 So how do we reason about exceptions? It just really boils down into writing code with the intent of what we want it to do, and not the exact how, which is basically every abstraction ever. It is done by simplifying our functions. By caring only about when our function fails and not if any individual operations in our function can fail. By making sure the clean up code works regardless of how we exit the function. And lastly, just approaching the code with a different mind set where what the function achieves is more of the focus then the ways of exiting the function.
 
-[Home](../Blogs.html)
+`
+}
+</BlogEntry>
+    </>
+  )
+}
+
+export default App
