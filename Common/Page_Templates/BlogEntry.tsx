@@ -1,9 +1,7 @@
 import {  JSX  } from 'react'
-import SiteHeader from '@common/SiteHeader.tsx'
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import React from 'react'
 
 import Page from './Page'
 
