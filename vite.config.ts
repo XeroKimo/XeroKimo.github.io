@@ -16,7 +16,7 @@ export default defineConfig({
         main_old: resolve(__dirname, 'Portfolio/Renzy_Portfolio.html'),
         blogs: resolve(__dirname, 'Blogs.html'),
         exception_reasoning: resolve(__dirname, 'Blogs/How_to_reason_about_exceptions.html'),
-        exception_reasoning_old: resolve(__dirname, 'How_to_reason_about_exceptions.html'),
+        monthly_projects: resolve(__dirname, 'Monthly_Projects.html'),
       },
     },
   },
