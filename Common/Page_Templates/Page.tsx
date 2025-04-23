@@ -1,7 +1,7 @@
 import {  JSX  } from 'react'
 import SiteHeader from '@common/SiteHeader.tsx'
 
-function Page(props : { children : JSX.Element | JSX.Element[] | null,}) : JSX.Element {
+function Page(props : { children? : JSX.Element | JSX.Element[]}) : JSX.Element {
 
   return (
     <>

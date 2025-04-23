@@ -7,8 +7,10 @@ function App() : JSX.Element {
   return (
     <>
       <Page>
-        <p>2023</p>
-        <p><a href="Blogs/How_to_reason_about_exceptions.html">How To Reason About Exceptions</a></p>
+          <div className='left_aligned_div'>
+            <p><h3>2023</h3></p>
+            <p><a href="Blogs/How_to_reason_about_exceptions.html">How To Reason About Exceptions</a></p>
+          </div>
       </Page>
     </>
   )

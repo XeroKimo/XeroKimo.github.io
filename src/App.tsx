@@ -77,7 +77,7 @@ function Profile() : ColumnElement
 
 function OnMyWayHome() : ColumnElement
 {
-  const description = () : JSX.Element => (<><h1>On My Way Home</h1>
+  const description = () : JSX.Element => (<><h2>On My Way Home</h2>
     <p>
       On My Way Home is an endless runner game submitted for Brackey's Game
       Jam 2024. Avoid obstacles by either switching lanes or jumping over and
@@ -99,7 +99,7 @@ function OnMyWayHome() : ColumnElement
 function Mechroneer() : ColumnElement
 {
   const description = () : JSX.Element => (<>
-    <h1>Mechroneer</h1>
+    <h2>Mechroneer</h2>
     <p>
       Mechroneer was the first game I developed. It was my student capstone
       project. Mechroneer is a MOBA similar to Battlerite, but with

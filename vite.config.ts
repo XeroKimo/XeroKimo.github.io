@@ -13,8 +13,10 @@ export default defineConfig({
       input: {
         //Allows me to deploy multi page apps https://vite.dev/guide/build.html#multi-page-app
         main: resolve(__dirname, 'index.html'),
+        main_old: resolve(__dirname, 'Portfolio/Renzy_Portfolio.html'),
         blogs: resolve(__dirname, 'Blogs.html'),
         exception_reasoning: resolve(__dirname, 'Blogs/How_to_reason_about_exceptions.html'),
+        exception_reasoning_old: resolve(__dirname, 'How_to_reason_about_exceptions.html'),
       },
     },
   },

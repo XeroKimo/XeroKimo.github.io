@@ -30,5 +30,5 @@
     },
     
   },
-  "include": ["src", "Blogs", "Blogs/ReasonAboutExceptions", "Common/Page_Templates"]
+  "include": ["src", "Blogs", "Blogs/ReasonAboutExceptions", "Common/Page_Templates", "Monthly_Projects"]
 }
