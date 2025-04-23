@@ -1,37 +1,14 @@
 import './App.css'
 import {  JSX  } from 'react'
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
+import BlogEntry from '@common/Page_Templates/BlogEntry'
 
 function App() : JSX.Element {
 
   return (
     <>
-    <ReactMarkdown remarkPlugins={[remarkGfm]} components={{
-      code({ className, children}) {
-        const match = /language-(\w+)/.exec(className || '')
-        return match ? (
-          <SyntaxHighlighter
-            children={String(children).replace(/\n$/, '')}
-            language={match[1]}
-            PreTag="div"
-          />
-        ) : (
-          <code className={className} >
-            {children}
-          </code>
-        )
-      }
-    }}>
+    <BlogEntry title='How To Reason About Exceptions' publishedDate='2024 Sept 2' modifiedDate='2025 Mar 3'>
 {
 `
-# How to reason about exceptions
-
-Publish Date: 2024 Sept 2
-
-Last Updated: 2025 March 3
-
 ## Preface
 
 I am not here to tell you whether exceptions are better or not. This could honestly be called how to reason about error handling as most of the content can be applied to any error handling scheme you use, but I'd like to focus on exceptions as they are my favorite ways to handle errors and hopefully shed some light on how to be able to reason about codebases which uses exceptions. There are a lot of resources about how to use exceptions, but not a lot on how to reason about them beyond the basics of what occurs when you throw them. This post does assume you have basic understanding of how exceptions work.
@@ -176,7 +153,7 @@ So how do we reason about exceptions? It just really boils down into writing cod
 
 `
 }
-</ReactMarkdown>
+</BlogEntry>
     </>
   )
 }

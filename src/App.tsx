@@ -6,6 +6,7 @@ import WordMeetsTeeGif from './Portfolio/WordMeetsTee.gif'
 import ChessSoccerGif from './Portfolio/ChessSoccer.gif'
 import './App.css'
 import {  JSX  } from 'react'
+import Page from '@common/Page_Templates/Page'
 
 type ColumnElement = 
 {
@@ -181,12 +182,14 @@ function App() : JSX.Element {
 
   return (
     <>
+      <Page>
       {LeftColumn(Profile())}
       <h1>Projects</h1>
         {RightColumn(OnMyWayHome())}
         {LeftColumn(Mechroneer())}
         {RightColumn(WordMeetsTee())}
         {LeftColumn(ChessSoccer())}
+      </Page>
     </>
   )
 }
