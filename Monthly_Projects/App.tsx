@@ -116,7 +116,7 @@ function App(): JSX.Element {
           <Entry month="January" title="On Hiatus" />
         </YearBound>
         <YearBound year="2024">
-          <Entry month="December" title="Intermediate Rendering">
+          <Entry month="December" title="Physics Engines">
             <p>
               This month, I tackled the topic of Physics and Physics Engines. Always wanted to know how it worked. I could just look at some
               open source engines and look at there code, but what's the fun in that, so of course I'm going to code my own?...
