@@ -2,7 +2,6 @@ import ShadowRenderingVideo from './Assets/2024-11-24 17-22-57.mp4'
 import Win32Calculator from './Assets/Win32_Calculator.png'
 import WinUI3Calculator from './Assets/WinUI3_Calculator.png'
 import AndroidCalculator from './Assets/Android_Calculator.png'
-import './App.css'
 import { JSX } from 'react'
 import Page from '@common/Page_Templates/Page'
 
