@@ -1,4 +1,3 @@
-import './App.css'
 import {  JSX  } from 'react'
 import BlogEntry from '@common/Page_Templates/BlogEntry'
 
