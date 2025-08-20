@@ -2,6 +2,7 @@ import ShadowRenderingVideo from './Assets/2024-11-24 17-22-57.mp4'
 import Win32Calculator from './Assets/Win32_Calculator.png'
 import WinUI3Calculator from './Assets/WinUI3_Calculator.png'
 import AndroidCalculator from './Assets/Android_Calculator.png'
+import EngineEditorVideo from './Assets/2025-08-01 17-02-50.mp4'
 import { JSX } from 'react'
 import Page from '@common/Page_Templates/Page'
 
@@ -29,6 +30,58 @@ function App(): JSX.Element {
     <>
       <Page>
         <YearBound year="2025">
+          <Entry month="July" title="Personal Game Engine Editor"></Entry>
+          <p>
+            I planned to join a game jam, using it as a means to develop my personal game engine. The game jam restricted assets to free premade assets, which gave me an idea
+             ahead of time as to what I needed to implement. Sadly, I couldn't get all the bare minimum features I had in mind implemented in time, so I dropped making the game.<br/><br/>
+
+            I managed to get:<br/>
+            - A scene preview<br/>
+            - Play in Editor<br/>
+            - Scene Hierarchy<br/>
+            - Inspector<br/>
+            - Serializing / Deserializing scenes<br/><br/>
+
+            I was just missing:<br/>
+            - Input<br/>
+            - Physics<br/><br/>
+
+            I had fun doing this. It's been awhile since I've last used Dear IMGUI, but for hacking around to add editor tooling, things went by faster 
+            than I expected for the minimum amount of features I was going for.<br/><br/>
+
+            I hope to attempt this approach again, finding a game jam, find some premade assets to use to scout out features to add to my engine, 
+            and use those added features to develop a game. I'll try to give myself enough time to prepare my engine next time.<br/>
+            
+            <video width="320" height="240" muted controls><source src={EngineEditorVideo} type="video/mp4" /></video>
+          </p>
+          <Entry month="June" title="Hiatus"></Entry>
+          <Entry month="May" title="Eden's Arena Prototype">
+            <p>
+              This month I've developed a prototype inspired by a game I enjoyed called "One Step From Eden". It's a rogue-lite deck builder with combat mechanics inspired by "Megaman Battle Network". 
+              I made this prototype because there was a PvP sequel which I was disappointed in because they removed the rogue-lite mechanics which I felt core to the experience. 
+              The prototype aims to re-introduce those mechanics in a PvP setting + see if I can garner interest into making it a full project.<br/><br/>
+
+              The prototype was made using Unity + Photon Fusion 2 for the networking library. I was going to use Photon Quantum to support rollback, 
+              but I wasn't sure if the architecture I had in mind would work due to the different way you had to code with Quantum, though using Fusion 2 was a
+              lso a risk because it would also be the first time using it as I was only familiar with Photon's older library, Photon Unity Networking 2 (PUN2). 
+              Thankfully, I had little to no issues learning it, and it integrated with my planned architecture just fine as well.<br/><br/>
+
+              One of the most painful things about coding networked games in Unity is that you have to make a build of the game to get multiple instances to test as a 𝗅̶𝗈̶𝗇̶𝖾̶𝗋̶ solo dev... 
+              until a friend told me Unity 6 has a way to have virtual players called "Multiplay" and wow, what a god send. When I first used it, it wasn't working because the 
+              virtual players were getting errors saying assets were out of date, but it never said what was out of date... A reinstall of the plugin fixed it and later on I 
+              would occasionally get the error and figured out a reimport all also fixed the issue.
+              Unity 6 Multiplay out of the box honestly just works better than Unreal's, sure provided it is newer, but I think Unity's PIE is also a better experience compared to Unreal's. 
+              Each player has its own logger, so you can see what that player sees. You also have access to the hierarchy and inspector for each player so it's easier to see if something is 
+              being replicated properly.<br/><br/>
+
+              I had help from a friend to design the card effects, and I managed around 25/34 cards designed to be implemented, but that's okay, 20 cards was the minimum I was aiming for anyways. 
+              I reached all my goals I had set for the prototype in the end, but I wish I got my stretch goals as well by having 3 unique characters, each having a unique spell which help shaped their play style.<br/><br/>
+
+              The prototype can be found here <a href="https://xerokimo.itch.io/edens-arena">https://xerokimo.itch.io/edens-arena</a>. It does require 4 players in order to play however. 
+              Feel free to leave a comment if the game looks interesting, if I can garner enough interest, I might look into making it a full game.
+            </p>
+          </Entry>
+          <Entry month="April" title="Hiatus"></Entry>
           <Entry month="March" title="Build Systems">
             <p>
               When coding C++, I've always stuck to MSBuild because it's just configured for you when you're coding in Visual Studio. 
